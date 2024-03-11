@@ -1,22 +1,17 @@
-// Pegando o express
 const express = require('express')
 const app = express()
 
-// Criando rota
-app.get('/', function (req, res) {
-    res.send('Chegou a resposta')
-})
+app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
-app.get('/hello', function (req, res) {
-    res.send('Chegou a resposta hello')
-})
+const introducao = require('./routes/introducao')
+const lista1 = require('./routes/lista1')
+const lista2 = require('./routes/lista2')
 
-app.get('/nome', function(res, res) {
-   res.send('Mateus')
-})
+app.use('/', introducao)
+app.use('/lista1', lista1)
+app.use('/lista2', lista2)
 
-// Ativando o servidor
-app.listen(3000, function () {
-    console.log('Server up')
+app.listen(3000, function(){
+    console.log('Server UP port 3000')
 })
-
