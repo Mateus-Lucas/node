@@ -1,15 +1,20 @@
 const express = require('express')
-const router = express.Router()
+const app = express()
 
-router.post('/ex2', function(req, res){
+app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
-    const {nome, horasTrabalhadas, valorHora, filhos} = req.body
+const introducao = require('./routes/introducao')
+const lista1 = require('./routes/lista1')
+const lista2 = require('./routes/lista2')
+const lista3 = require('./routes/lista3')
 
-    const salarioBruto = horasTrabalhadas * valorHora
-    const bonificacaoFilhos = 0.03 * salarioBruto * filhos
-    const salarioFinal = salarioBruto + bonificacaoFilhos
 
-    res.json({salarioBruto, bonificacaoFilhos, salarioFinal})
+app.use('/', introducao)
+app.use('/lista1', lista1)
+app.use('/lista2', lista2)
+app.use('/lista3', lista3)
+
+app.listen(3000, function(){
+    console.log('Server UP port 3000')
 })
-
-module.exports = router
