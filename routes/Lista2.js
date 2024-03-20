@@ -23,4 +23,46 @@ router.post('/ex3', function (req, res) {
     res.json({ nome, idade });
 })
 
+router.post('/ex4', function (req, res) {
+   const { nome, idade } = req.body;
+   anos = parseInt( idade / 365 );
+   meses = parseInt(( idade % 365 )/30);
+   dias = parseInt(idade - ((anos*365) + (meses*30)));
+   res.json({ nome, anos, meses, dias });
+})
+
+router.post('/ex4', function (req, res) {
+   const { nome, idade } = req.body;
+   anos = parseInt( idade / 365 );
+   meses = parseInt(( idade % 365 )/30);
+   dias = parseInt(idade - ((anos*365) + (meses*30)));
+   res.json({ nome, anos, meses, dias });
+})
+
+router.post('/ex6', function (req, res) {
+   const { tempo } = req.body
+   const horas = parseInt(tempo / (60*60))
+   const minutos = parseInt((tempo % (60*60))/60)
+   const segundos = parseInt(tempo - ((60*60) + (minutos*60)))
+   res.json({ horas, minutos, segundos });
+})
+
+router.post('/ex4', function (req, res) {
+   const { nome, idade } = req.body;
+   anos = parseInt( idade / 365 );
+   meses = parseInt(( idade % 365 )/30);
+   dias = parseInt(idade - ((anos*365) + (meses*30)));
+   res.json({ nome, anos, meses, dias });
+})
+
+router.post('/ex4', function (req, res) {
+   const { nome, idade } = req.body;
+   anos = parseInt( idade / 365 );
+   meses = parseInt(( idade % 365 )/30);
+   dias = parseInt(idade - ((anos*365) + (meses*30)));
+   res.json({ nome, anos, meses, dias });
+})
+
+
+
 module.exports = router
