@@ -1,6 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
+router.post('/ex1', function (req, res) {
+
+    salario = req.body
+
+    let salarioReajustado = 0
+
+    if (salario > 2000) {
+        salarioReajustado = salario * 1.3
+    } else {
+        salarioReajustado = salario * 1.5
+    }
+
+    return salarioReajustado
+
+    res.json({ salarioReajustado })
+
+})
+
 router.post('/ex4', function (req, res) {
 
     const { salarioMinimo, horasTrabalhadas, dependentes, horasExtras } = req.body
