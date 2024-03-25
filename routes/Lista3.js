@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.post('/ex1', function (req, res) {
 
-    salario = req.body
+    const { salario } = req.body
 
     let salarioReajustado = 0
 
@@ -13,11 +13,52 @@ router.post('/ex1', function (req, res) {
         salarioReajustado = salario * 1.5
     }
 
-    return salarioReajustado
-
     res.json({ salarioReajustado })
 
 })
+
+router.post('/ex2', function (req, res) {
+
+    const { n1, n2, n3 } = req.body
+
+    let numeroMaior = 0
+
+    if (n1 > n2 && n1 > n3) {
+        numeroMaior = n1
+    } else if (n2 > n1 && n2 > n3) {
+        numeroMaior = n2
+    } else {
+        numeroMaior = n3
+    }
+
+    res.json({ numeroMaior })
+
+})
+
+router.post('/ex3', function (req, res) {
+
+    const { quantPessoas, quantCoberturas, quantChopps } = req.body
+
+    chopp = 4.8
+    pizzaGrande = 17
+    cobertura = 1.5
+
+    const valorTotal = (quantChopps * chopp) + (pizzaGrande + (cobertura * quantCoberturas))
+    const valorTotalGarcom = ((quantChopps * chopp) + (pizzaGrande + (cobertura * quantCoberturas)))*1.1
+    const pagamentoIndividualGarcom = (valorTotal / quantPessoas) * 1.1
+    const pagamentoIndividualComum = valorTotal / quantPessoas
+
+    res.json({
+        quantPessoas,
+        valorTotal,
+        pagamentoIndividualComum,
+        valorTotalGarcom,
+        pagamentoIndividualGarcom
+    })
+
+})
+
+
 
 router.post('/ex4', function (req, res) {
 
@@ -39,16 +80,16 @@ router.post('/ex4', function (req, res) {
     const gratificacao = salarioLiquido < 3500 ? 1000 : 500
     const salarioReceber = salarioLiquido + gratificacao
 
-        res.json({
-            valorHoraTrabalhada,
-            salarioMes,
-            valorDependente,
-            valorHoraExtra,
-            salarioBruto, 
-            salarioLiquido,
-            gratificacao,
-            salarioReceber
-        })
+    res.json({
+        valorHoraTrabalhada,
+        salarioMes,
+        valorDependente,
+        valorHoraExtra,
+        salarioBruto,
+        salarioLiquido,
+        gratificacao,
+        salarioReceber
+    })
 })
 
 module.exports = router
