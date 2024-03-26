@@ -118,4 +118,20 @@ router.post('/ex5', function (req, res) {
 
 })
 
+router.post('/ex6', function (req, res) {
+    
+    const {genero, altura} = req.body 
+
+    let peso = 0
+
+    if (genero == 'M') {
+        peso = (72.7 * altura) - 58
+    } else if (genero == 'F') {
+        peso = (62.1 * altura) - 44.7
+    }
+
+    res.json({genero, peso})
+
+})
+
 module.exports = router
