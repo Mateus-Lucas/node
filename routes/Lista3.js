@@ -44,7 +44,7 @@ router.post('/ex3', function (req, res) {
     cobertura = 1.5
 
     const valorTotal = (quantChopps * chopp) + (pizzaGrande + (cobertura * quantCoberturas))
-    const valorTotalGarcom = ((quantChopps * chopp) + (pizzaGrande + (cobertura * quantCoberturas)))*1.1
+    const valorTotalGarcom = ((quantChopps * chopp) + (pizzaGrande + (cobertura * quantCoberturas))) * 1.1
     const pagamentoIndividualGarcom = (valorTotal / quantPessoas) * 1.1
     const pagamentoIndividualComum = valorTotal / quantPessoas
 
@@ -90,6 +90,32 @@ router.post('/ex4', function (req, res) {
         gratificacao,
         salarioReceber
     })
+})
+
+router.post('/ex5', function (req, res) {
+
+    const { numeroIdentificacao, nota1, nota2, nota3, mediaExercicios } = req.body
+
+    const mediaAproveitamento = (nota1 + (nota2 * 2) + (nota3 * 3) + mediaExercicios) / 7
+
+    let mensagem = ''
+
+    if (mediaAproveitamento >= 6) {
+        mensagem = 'Aprovado'
+    } else {
+        mensagem = 'Reprovado'
+    }
+
+    res.json({
+        numeroIdentificacao,
+        nota1, 
+        nota2, 
+        nota3,
+        mediaExercicios,
+        mediaAproveitamento,
+        mensagem
+    })
+
 })
 
 module.exports = router
