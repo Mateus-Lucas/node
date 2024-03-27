@@ -108,8 +108,8 @@ router.post('/ex5', function (req, res) {
 
     res.json({
         numeroIdentificacao,
-        nota1, 
-        nota2, 
+        nota1,
+        nota2,
         nota3,
         mediaExercicios,
         mediaAproveitamento,
@@ -119,8 +119,8 @@ router.post('/ex5', function (req, res) {
 })
 
 router.post('/ex6', function (req, res) {
-    
-    const {genero, altura} = req.body 
+
+    const { genero, altura } = req.body
 
     let peso = 0
 
@@ -130,7 +130,46 @@ router.post('/ex6', function (req, res) {
         peso = (62.1 * altura) - 44.7
     }
 
-    res.json({genero, peso})
+    res.json({ genero, peso })
+
+})
+
+router.post('/ex7', function (req, res) {
+
+    const { n1, n2, n3 } = req.body
+
+    let soma = 0
+
+    if (n1 > n3 && n2 > n3) {
+        soma = n1 + n2
+    } else if (n2 > n1 && n3 > n1) {
+        soma = n2 + n3
+    } else {
+        soma = n1 + n3
+    }
+
+    res.json({ soma })
+})
+
+router.post('/ex8', function (req, res) {
+
+    const { salario, codigo } = req.body
+
+    let salarioAjustado = 0
+
+    if (codigo == '101') {
+        salarioAjustado = salario * 1.05
+    } else if (codigo == '102') {
+        salarioAjustado = salario * 1.075
+    } else if (codigo == '103') {
+        salarioAjustado = salario * 1.1
+    } else {
+        salarioAjustado = salario * 1.15
+    }
+
+    const diferencaSalario = salarioAjustado - salario
+
+    res.json({salario, salarioAjustado, diferencaSalario})
 
 })
 
