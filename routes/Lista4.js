@@ -2,68 +2,120 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/ex1', function (req, res) {
-    const numeros = req.body.notas
+    const valoress = req.body.notas
     let soma = 0
-    for (let n of numeros) {
+    for (let n of valoress) {
         soma += n
     }
-    const media = soma / numeros.length
+    const media = soma / valoress.length
     res.json({ media })
 })
 
 router.post('/ex2', function (req, res) {
-    let numeros = []
+    let valoress = []
     for (let i = 1; i < 101; i++) {
-        numeros.push(i)
+        valoress.push(i)
     }
-    res.json({ numeros })
+    res.json({ valoress })
 })
 
 router.post('/ex3', function (req, res) {
-    let numeros = []
+    let valoress = []
     for (let i = 1; i < 11; i++) {
-        numeros.push(i)
+        valoress.push(i)
     }
-    const mensagem = (`${numeros.join(', ')}`)
+    const mensagem = (`${valoress.join(', ')}`)
     res.json({ mensagem })
 })
 
 router.post('/ex4', function (req, res) {
-    let numeros = [];
+    let valoress = [];
     for (let i = 1; i < 11; i++) {
-        numeros.push(i);
+        valoress.push(i);
     }
-    numeros = numeros.sort((a, b) => b - a); 
-    const mensagem = `${numeros.join(', ')}`;
+    valoress = valoress.sort((a, b) => b - a);
+    const mensagem = `${valoress.join(', ')}`;
     res.json({ mensagem });
 });
 
 router.post('/ex5', function (req, res) {
-    let numeros = [];
+    let valoress = [];
     for (let i = 101; i < 111; i++) {
-        numeros.push(i);
-    } 
-    const mensagem = `${numeros.join(', ')}`;
+        valoress.push(i);
+    }
+    const mensagem = `${valoress.join(', ')}`;
     res.json({ mensagem });
 });
 
 router.post('/ex6', function (req, res) {
-    const numeros = req.body
+    const valoress = req.body
     let soma = 0
-    for (let numero = 0; numero < numeros.length; numero++) {
-       soma += numeros[numero]
-    } 
+    for (let valores = 0; valores < valoress.length; valores++) {
+        soma += valoress[valores]
+    }
     res.json({ soma });
 });
 
 router.post('/ex7', function (req, res) {
-    const numero = req.body
-   
-    for (let i = 1; ; numero++) {
-       soma += numeros[numero]
-    } 
-    res.json({ soma });
+    const valores = req.body.valores;
+    let valoress = [1];
+    for (let i = 2; i <= valores; i += 2) {
+        valoress.push(i);
+    }
+    if (valores % 2 != 0) {
+        valoress.push(valores)
+    }
+    res.json({ valoress });
 });
+
+router.post('/ex8', function (req, res) {
+    const valores = req.body.valores;
+    let negativos = [];
+    valores.forEach(valor => {
+        valor = valor < 0 ? valor : negativos.push(valor);
+    });
+    res.json({ negativos });
+});
+
+router.post('/ex9', function (req, res) {
+    const valores = req.body.valores;
+    let negativos = [];
+    valores.forEach(valor => {
+        valor = valor < 0 ? negativos.push(valor) : valor;
+    });
+    res.json({ negativos });
+});
+
+router.post('/ex10', function (req, res) {
+    const valores = req.body.valores;
+    let dentroIntervalo = [];
+    let foraIntervalo = [];
+    valores.forEach(valor => {
+        if (10 <= valor && valor <= 20) {
+            dentroIntervalo.push(valor);
+        } else {
+            foraIntervalo.push(valor);
+        }
+    });
+    res.json({ dentroIntervalo, foraIntervalo });
+});
+
+router.post('/ex11', function (req, res) {
+    const valores = req.body.valores
+    let soma = 0
+    for (let i = 0; i < valores.length; i++) {
+        soma += valores[i]
+    }
+    const media = soma/valores.length
+    res.json({ media });
+})
+
+
+
+
+
+
+
 
 
 module.exports = router
