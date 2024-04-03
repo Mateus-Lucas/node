@@ -101,6 +101,16 @@ router.post('/ex10', function (req, res) {
 });
 
 router.post('/ex11', function (req, res) {
+    const valores = [21, 54, 98, 65, 87, 65, 21, 98, 87, 65]
+    let soma = 0
+    for (let i = 0; i < valores.length; i++) {
+        soma += valores[i]
+    }
+    const media = soma/valores.length
+    res.json({ media });
+})
+
+router.post('/ex12', function (req, res) {
     const valores = req.body.valores
     let soma = 0
     for (let i = 0; i < valores.length; i++) {
@@ -108,6 +118,16 @@ router.post('/ex11', function (req, res) {
     }
     const media = soma/valores.length
     res.json({ media });
+})
+
+router.post('/ex13', function (req, res) {
+    const numero = req.body.numero
+    let tripoValores = []
+    for (let i = 1; i < numero; i++) {
+        tripoValores.push(i * 3)
+    }
+ 
+    res.json({ tripoValores });
 })
 
 
